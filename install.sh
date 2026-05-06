@@ -60,13 +60,23 @@ fi
 # == CONFIG FILES ==
 if confirm "Do you want to install the graphical .config files?"; then
   let installs++ || true
-  echo -e "\e[94mInstalling .config files...\e[0m"
-  for d in `ls .config`; do
+  echo -e "\e[94mInstalling graphical .config files...\e[0m"
+  for d in `ls .gconfig`; do
     # Scary
     rm -vrf "$HOME/.config/$d"
-    ln -vs "$(realpath ".config/$d")" ~/.config
+    ln -vs "$(realpath ".gconfig/$d")" ~/.config
   done
 fi
+if confirm "Do you want to install the terminal .config files?"; then
+  let installs++ || true
+  echo -e "\e[94mInstalling terminal .config files...\e[0m"
+  for d in `ls .tconfig`; do
+    # Scary
+    rm -vrf "$HOME/.config/$d"
+    ln -vs "$(realpath ".tconfig/$d")" ~/.config
+  done
+fi
+
 
 # == MANUALLY INSTALLED FILES ==
 if confirm "Do you want to install rofi-bmenu?"; then
