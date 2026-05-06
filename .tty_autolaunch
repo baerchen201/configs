@@ -1,0 +1,36 @@
+# == GRAPHICAL SESSIONS ==
+
+tty_hyprland() {
+  if [ -z "$1" ]; then ttynum=1; else ttynum=$1; fi
+  if [ `tty` = "/dev/tty$ttynum" ] && uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+  fi
+}
+
+tty_xinit() {
+  if [ -z "$1" ]; then ttynum=1; else ttynum=$1; fi
+  if [ `tty` = "/dev/tty$ttynum" ]; then
+    exec startx
+  fi
+}
+
+#tty_hyprland   # runs hyprland with uwsm if on tty1
+#tty_xinit      # runs startx if on tty1
+
+# == TERMINAL SESSIONS ==
+
+# this launches a separate tmux session for each tty, so you can have multiple enabled and active at once and they won't conflict
+tty_tmux() {
+  if [ -z "$1" ]; then ttynum=1; else ttynum=$1; fi
+  if [ `tty` = "/dev/tty$ttynum" ]; then
+    if tmux attach -t "tty$ttynum"; then
+      exit
+    else
+      exec tmux new-session -s "tty$ttynum"
+    fi
+  fi
+}
+
+#tty_tmux       # runs tmux if on tty1
+#tty_tmux 2     # runs tmux if on tty2
+

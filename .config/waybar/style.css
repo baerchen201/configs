@@ -1,0 +1,34 @@
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: FontAwesome, Ubuntu, Roboto, Helvetica, system-ui, monospace,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+window#waybar {
+  background-color: rgba(0, 0, 0, 0.87);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.92);
+  transition: background-color 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+.module {
+  border-radius: 5px;
+  color: #000;
+  background-color: #ac8dba;
+  padding: 0 5px;
+}
+
+#window {
+  color: #fff;
+  background-color: transparent;
+  margin: 0 4px;
+}
+
+label:focus {
+  background-color: #000000;
+}
