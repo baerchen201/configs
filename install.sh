@@ -44,6 +44,7 @@ installs=
 if confirm "Do you want to install the bash scripts (.bashrc/.bash_profile)?"; then
   let installs++ || true
   echo -e "\e[94mInstalling bash scripts...\e[0m"
+  mkdir -vp ~
   for f in `ls .bash*`; do
     ln -vsf "$(realpath "$f")" ~
   done
@@ -61,6 +62,7 @@ fi
 if confirm "Do you want to install the graphical .config files?"; then
   let installs++ || true
   echo -e "\e[94mInstalling graphical .config files...\e[0m"
+  mkdir -vp ~/.config
   for d in `ls .gconfig`; do
     # Scary
     rm -vrf "$HOME/.config/$d"
@@ -70,6 +72,7 @@ fi
 if confirm "Do you want to install the terminal .config files?"; then
   let installs++ || true
   echo -e "\e[94mInstalling terminal .config files...\e[0m"
+  mkdir -vp ~/.config
   for d in `ls .tconfig`; do
     # Scary
     rm -vrf "$HOME/.config/$d"
