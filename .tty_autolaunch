@@ -21,16 +21,30 @@ tty_xinit() {
 
 # this launches a separate tmux session for each tty, so you can have multiple enabled and active at once and they won't conflict
 tty_tmux() {
+  if [ -n "$TMUX" ]; then return; fi
   if [ -z "$1" ]; then ttynum=1; else ttynum=$1; fi
   if [ `tty` = "/dev/tty$ttynum" ]; then
     if tmux attach -t "tty$ttynum"; then
       exit
     else
-      exec tmux new-session -s "tty$ttynum"
+      SHLVL=0 exec tmux new-session -s "tty$ttynum"
+    fi
+  fi
+}
+
+ssh_tmux() {
+  if [ -n "$TMUX" ]; then return; fi
+  if [ -n "$SSH_CLIENT" ]; then
+    if tmux attach -t ssh; then
+      exit
+    else
+      SHLVL=0 exec tmux new-session -s ssh
     fi
   fi
 }
 
 #tty_tmux       # runs tmux if on tty1
 #tty_tmux 2     # runs tmux if on tty2
+
+#ssh_tmux       # runs tmux if connected through ssh
 
