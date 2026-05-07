@@ -7,7 +7,9 @@ if [ -d ~/.local/bin ]; then
   export PATH="$(realpath ~/.local/bin):$PATH"
 fi
 
-export TERM="linux"
+if [ -z "$TERM" ]; then
+  export TERM="linux"
+fi
 
 [[ -f ~/.tty_autolaunch ]] && . ~/.tty_autolaunch
 
