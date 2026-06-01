@@ -29,7 +29,8 @@ echo -e "\e[93mWARNING: This script will modify
   >> .local/bin/bmenu.sh
   >> .local/lib/rofi-bmenu
  > .config files for the following apps:
-$(ls .config | sed 's/^/  >> /')
+$(ls .gconfig | sed 's/^/  >> /')
+$(ls .tconfig | sed 's/^/  >> /')
 
 Please ensure you have your current scripts and config files backed up, as they will be permanently overwritten.\e[0m"
 
