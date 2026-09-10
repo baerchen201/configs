@@ -44,7 +44,6 @@
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
-    "on-click": "nm-connection-editor",
   },
 
   // Use pipewire + pipewire-pulse instead of pulseaudio
@@ -65,7 +64,7 @@
       "car": "",
       "default": ["", "", ""],
     },
-    "on-click": "uwsm app -- pavucontrol",
+    "on-click": "pavucontrol",
   },
 
   "tray": {
